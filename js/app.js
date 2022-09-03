@@ -7,15 +7,10 @@ const loadCategories = async() =>{
 }
 
 const displayCategories = (data) =>{
-    // console.log(data);
     const categoriesContainer = document.getElementById('categories-container');
-    // const categorieResult = document.getElementById('category-result');
-    // categorieResult.innerText = data.category_name;
     data.forEach(categorie =>{
       const {category_id, category_name} = categorie;
        const categorieDiv = document.createElement('div');
-      //  categorieDiv.classList.add('col-md-1');
-      //  categorieDiv.classList.add('d-md-flex');
        categorieDiv.innerHTML = `
        <div class="col" onclick="foundCate('${category_name}')"><a class="btn" onclick="loadNews(${category_id})"><h5>${category_name}</h5></a</div>
        `;
@@ -30,7 +25,6 @@ const loadNews = async (category_id) =>{
     displayNews(data.data);
 }
 
-// Experimantal 
 const foundCate = (category_name) =>{
   console.log(category_name);
   const categorieResult = document.getElementById('category-result');
@@ -57,38 +51,39 @@ const displayNews = (data) =>{
         const {title, thumbnail_url, details, total_view, author, _id, rating} = news;
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
-        <div class="card mb-3 p-3 shadow p-3 mb-5 bg-body rounded" style="max-width: 75rem;">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="${thumbnail_url}" class=""...">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">${title}</h5>
-                          <p class="card-text">${details.slice(0,300)}...</p>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between align-items-center">
-                        <div>
-                          <div><img class="rounded-circle sticky-bottom" style="width: 5rem;" src="${author.img}" alt="">
-                            <div>
-                              <h6>${author.name ? author.name : 'No Author'}</h6>
-                              <p>${author.published_date}</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <p><i class="fa-regular fa-eye"></i> <strong>${total_view ? total_view : 0}</strong></p>
-                        </div>
-                        <div>
-                          <p><span class="text-warning"><i class="fa-solid fa-star"></i></span><strong> ${rating.number}</strong></p>
-                        </div>
-                        <div>
-                         <button onclick="loadNewsDetails('${_id}')" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-arrow-right fs-4 my-2"></i></button>
-                        </div>
-                      </div>
-                      </div>
-                    </div>
-                  </div>
+        <div class="card p-3 shadow ms-0 mb-5 bg-body rounded" style="max-width: 75rem;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="${thumbnail_url}" class=""...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">${title}</h5>
+          <p class="card-text">${details.slice(0,400)}...</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+        <div class="d-flex">
+            <div>
+                 <img class="rounded-circle sticky-bottom me-2" style="width: 4rem;" src="${author.img}" alt="">
+            </div>
+            <div class="d-flex align-items-center">
+              <h6>Author Name: <span class="text-danger">${author.name ? author.name : 'No Data'}</span></h6>
+              
+            </div>
+        </div>
+        <div>
+          <p><i class="fa-regular fa-eye"></i> <strong class="text-secondary">${total_view ? total_view : 'No Views'}</strong></p>
+        </div>
+        <div class="mx-2">
+          <p><span class="text-warning"><i class="fa-solid fa-star"></i></span><strong> ${rating.number}</strong></p>
+        </div>
+        <div>
+         <button onclick="loadNewsDetails('${_id}')" type="button" class="btn text-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-arrow-right fs-4 my-2"></i></button>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
         `;
         newsContainer.appendChild(newsDiv);
     })
