@@ -46,7 +46,7 @@ const displayNews = (data) =>{
         // console.log(_id);
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
-        <div onclick="loadNewsDetails('${_id}')" class="card mb-3 p-3" style="max-width: 75rem;">
+        <div class="card mb-3 p-3" style="max-width: 75rem;">
                     <div class="row g-0">
                       <div class="col-md-4">
                         <img src="${thumbnail_url}" class=""...">
@@ -60,13 +60,13 @@ const displayNews = (data) =>{
                         <div>
                           <div><img class="rounded-circle sticky-bottom" style="width: 6rem;" src="${author.img}" alt="">
                             <div>
-                              <h6>${author.name}</h6>
+                              <h6>${author.name ? author.name : 'No Author'}</h6>
                               <p>${author.published_date}</p>
                             </div>
                           </div>
                         </div>
                         <div>
-                          <p><i class="fa-regular fa-eye"></i> <strong>${total_view}</strong></p>
+                          <p><i class="fa-regular fa-eye"></i> <strong>${total_view ? total_view : 0}</strong></p>
                         </div>
                         <div>
                           <i class="fa-solid fa-star"></i>
@@ -76,7 +76,8 @@ const displayNews = (data) =>{
                           <i class="fa-solid fa-star"></i>
                         </div>
                         <div>
-                         <button onclick="loadNewsDetails('${_id}')"><i class="fa-solid fa-arrow-right fs-4"></i> </button>
+                         <button onclick="loadNewsDetails('${_id}')"><i class="fa-solid fa-arrow-right fs-4 my-2"></i> </button>
+                         <button onclick="loadNewsDetails('${_id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Modal</button>
                         </div>
                       </div>
                       </div>
@@ -88,11 +89,11 @@ const displayNews = (data) =>{
 }
 
 const loadNewsDetails = async news_id =>{
-  console.log(news_id);
+  // console.log(news_id);
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
     const res = await fetch(url);
     const data = await res.json();
-    displayNewsDetails(data.data);
+    displayNewsDetails(data.data[0]);
 }
 
 // const displayNewsDetails = (data) =>{
@@ -121,26 +122,13 @@ const loadNewsDetails = async news_id =>{
 
 const displayNewsDetails = details =>{
   console.log(details);
+  const {title} = details;
+  console.log(title);
   const detailsContainer = document.getElementById('modal-pop');
   detailsContainer.innerHTML = '';
-  const mealDetailsDiv = document.createElement('div');
-  mealDetailsDiv.innerHTML = `
-  <div class="modal-content text-center">
-  <div class="modal-header">
-    <h5 class="modal-title text-danger" id="exampleModalLabel">Title</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-  </div>
-  <div class="modal-body">
-  <h6>--- Instructions ---</h6>
-      <p>Setails</p>
-      <img class="img-fluid" src="https://i.ibb.co/M23fhxm/unsplash-Eh-Tc-C9s-YXsw.png">
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-  </div>
-</div>
-  `;
-  detailsContainer.appendChild(mealDetailsDiv);
+  const newsLabel = document.getElementById('newsDetailsLabel');
+  newsLabel.innerText = title;
+
 }
 
 loadCategories();
