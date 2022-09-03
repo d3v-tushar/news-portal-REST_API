@@ -3,31 +3,45 @@ const loadCategories = async() =>{
     const res = await fetch(url);
     const data = await res.json();
     displayCategories(data.data.news_category);
+    loadingSpinner(true);
 }
 
 const displayCategories = (data) =>{
+    // console.log(data);
     const categoriesContainer = document.getElementById('categories-container');
+    // const categorieResult = document.getElementById('category-result');
+    // categorieResult.innerText = data.category_name;
     data.forEach(categorie =>{
       const {category_id, category_name} = categorie;
        const categorieDiv = document.createElement('div');
        categorieDiv.innerHTML = `
-       <button class="btn btn-outline-primary" onclick="loadNews(${category_id})"><h5>${category_name}</h5></button>
+       <div onclick="foundCate('${category_name}')"><a class="btn" onclick="loadNews(${category_id})"><h5>${category_name}</h5></a</div>
        `;
        categoriesContainer.appendChild(categorieDiv);
     })
 }
 
-const loadNews = async (category_id, category_name) =>{
+const loadNews = async (category_id) =>{
     const url = `https://openapi.programming-hero.com/api/news/category/0${category_id}`;
     const res = await fetch(url);
     const data = await res.json();
     displayNews(data.data);
 }
 
-const displayNews = (data, category_name) =>{
+// Experimantal 
+const foundCate = (category_name) =>{
+  console.log(category_name);
+  const categorieResult = document.getElementById('category-result');
+  categorieResult.innerText = category_name;
+}
+
+const displayNews = (data) =>{
     const newsContainer = document.getElementById('news-container');
     const foundCount = document.getElementById('found-news');
     foundCount.innerText = data.length;
+    if(data.length == 0){
+      noNewsFound()
+    }
     newsContainer.textContent = '';
     data.sort((x, y) => y.total_view - x.total_view);
     data.forEach(news =>{
@@ -64,7 +78,7 @@ const displayNews = (data, category_name) =>{
                           <i class="fa-solid fa-star"></i>
                         </div>
                         <div>
-                         <button onclick="loadNewsDetails('${_id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-arrow-right fs-4 my-2"></i></button>
+                         <button onclick="loadNewsDetails('${_id}')" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-arrow-right fs-4 my-2"></i></button>
                         </div>
                       </div>
                       </div>
@@ -73,6 +87,13 @@ const displayNews = (data, category_name) =>{
         `;
         newsContainer.appendChild(newsDiv);
     })
+}
+
+const noNewsFound = () =>{
+  const noNews = document.getElementById('no-news-found');
+  noNews.innerHTML =`
+  <h2>No News Found For This Category</h2>
+  `
 }
 
 const loadNewsDetails = async news_id =>{
@@ -93,6 +114,16 @@ const displayNewsDetails = newsdetails =>{
   `;
   const newsLabel = document.getElementById('newsDetailsLabel');
   newsLabel.innerText = title;
+}
+
+const loadingSpinner = (status) =>{
+ const spinner = document.getElementById('spinner-id');
+ if(status === true){
+  spinner.classList.add('d-none')
+ }
+ else{
+  spinner.classList.remove('d-none')
+ }
 }
 
 loadCategories();
