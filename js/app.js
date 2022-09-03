@@ -10,9 +10,7 @@ const displayCategories = (data) =>{
     const categoriesContainer = document.getElementById('categories-container');
     data.forEach(categorie =>{
       const {category_id, category_name} = categorie;
-      console.log(category_id);
-      // const news_id = parseInt(category_id);
-      //       console.log(news_id);
+      // console.log(category_id);
        const categorieDiv = document.createElement('div');
        categorieDiv.innerHTML = `
        <button class="btn btn-outline-primary" onclick="loadNews(${category_id})"><h5>${category_name}</h5></button>
@@ -21,33 +19,34 @@ const displayCategories = (data) =>{
     })
 }
 
-// const loadNews = async(categorieId) =>{
-//   console.log(categorieId);
-//     const url = `https://openapi.programming-hero.com/api/news/category/${categorieId}`;
-//     const res = await fetch(url);
-//     const data = await res.json();
-//     displayNews(data.data);
-// }
-
-const loadNews = (category_id) =>{
-  const url = `https://openapi.programming-hero.com/api/news/category/0${category_id}`;
-  console.log(category_id);
-  console.log(url);
-  fetch(url)
-  .then(Response => Response.json())
-  .then(data => displayNews(data.data))
+const loadNews = async category_id =>{
+  // console.log(category_id);
+    const url = `https://openapi.programming-hero.com/api/news/category/0${category_id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNews(data.data);
 }
+
+// const loadNews = (category_id) =>{
+//   const url = `https://openapi.programming-hero.com/api/news/category/0${category_id}`;
+//   console.log(category_id);
+//   console.log(url);
+//   fetch(url)
+//   .then(Response => Response.json())
+//   .then(data => displayNews(data.data))
+// }
 
 const displayNews = (data) =>{
     // console.log(data);
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
     data.forEach(news =>{
-      console.log(news);
-        const {title, thumbnail_url, details, total_view, author} = news;
+      // console.log(news);
+        const {title, thumbnail_url, details, total_view, author, _id} = news;
+        // console.log(_id);
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
-        <div class="card mb-3 p-3" style="max-width: 75rem;">
+        <div onclick="loadNewsDetails('${_id}')" class="card mb-3 p-3" style="max-width: 75rem;">
                     <div class="row g-0">
                       <div class="col-md-4">
                         <img src="${thumbnail_url}" class=""...">
@@ -77,7 +76,7 @@ const displayNews = (data) =>{
                           <i class="fa-solid fa-star"></i>
                         </div>
                         <div>
-                          <i class="fa-solid fa-arrow-right fs-4"></i>
+                         <button onclick="loadNewsDetails('${_id}')"><i class="fa-solid fa-arrow-right fs-4"></i> </button>
                         </div>
                       </div>
                       </div>
@@ -88,7 +87,61 @@ const displayNews = (data) =>{
     })
 }
 
+const loadNewsDetails = async news_id =>{
+  console.log(news_id);
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNewsDetails(data.data);
+}
 
+// const displayNewsDetails = (data) =>{
+//   console.log(data);
+//   const newsDetailsContainer = document.getElementById('modal-pop');
+//   data.forEach(news =>{
+//     const detailedNews = document.createElement('div');
+//     detailedNews.innerHTML = `
+//     <div class="modal-content text-center">
+//     <div class="modal-header">
+//       <h5 class="modal-title text-danger" id="exampleModalLabel">Title</h5>
+//       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+//     </div>
+//     <div class="modal-body">
+//     <h6>--- Instructions ---</h6>
+//         <p>Details</p>
+//     </div>
+//     <div class="modal-footer">
+//       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+//     </div>
+//   </div>
+//     `;
+//     newsDetailsContainer.appendChild(detailedNews);
+//   })
+// }
+
+const displayNewsDetails = details =>{
+  console.log(details);
+  const detailsContainer = document.getElementById('modal-pop');
+  detailsContainer.innerHTML = '';
+  const mealDetailsDiv = document.createElement('div');
+  mealDetailsDiv.innerHTML = `
+  <div class="modal-content text-center">
+  <div class="modal-header">
+    <h5 class="modal-title text-danger" id="exampleModalLabel">Title</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+  <h6>--- Instructions ---</h6>
+      <p>Setails</p>
+      <img class="img-fluid" src="https://i.ibb.co/M23fhxm/unsplash-Eh-Tc-C9s-YXsw.png">
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+  </div>
+</div>
+  `;
+  detailsContainer.appendChild(mealDetailsDiv);
+}
 
 loadCategories();
 loadNews(08);
