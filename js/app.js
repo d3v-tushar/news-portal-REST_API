@@ -6,11 +6,9 @@ const loadCategories = async() =>{
 }
 
 const displayCategories = (data) =>{
-    // console.log(data);
     const categoriesContainer = document.getElementById('categories-container');
     data.forEach(categorie =>{
       const {category_id, category_name} = categorie;
-      // console.log(category_id);
        const categorieDiv = document.createElement('div');
        categorieDiv.innerHTML = `
        <button class="btn btn-outline-primary" onclick="loadNews(${category_id})"><h5>${category_name}</h5></button>
@@ -20,32 +18,20 @@ const displayCategories = (data) =>{
 }
 
 const loadNews = async (category_id, category_name) =>{
-  // console.log(category_id);
     const url = `https://openapi.programming-hero.com/api/news/category/0${category_id}`;
     const res = await fetch(url);
     const data = await res.json();
     displayNews(data.data);
 }
 
-// const loadNews = (category_id) =>{
-//   const url = `https://openapi.programming-hero.com/api/news/category/0${category_id}`;
-//   console.log(category_id);
-//   console.log(url);
-//   fetch(url)
-//   .then(Response => Response.json())
-//   .then(data => displayNews(data.data))
-// }
-
 const displayNews = (data, category_name) =>{
-    console.log(data);
     const newsContainer = document.getElementById('news-container');
     const foundCount = document.getElementById('found-news');
     foundCount.innerText = data.length;
     newsContainer.textContent = '';
+    data.sort((x, y) => y.total_view - x.total_view);
     data.forEach(news =>{
-      // console.log(news);
         const {title, thumbnail_url, details, total_view, author, _id} = news;
-        // console.log(_id);
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
         <div class="card mb-3 p-3 shadow p-3 mb-5 bg-body rounded" style="max-width: 75rem;">
@@ -90,36 +76,11 @@ const displayNews = (data, category_name) =>{
 }
 
 const loadNewsDetails = async news_id =>{
-  // console.log(news_id);
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
     const res = await fetch(url);
     const data = await res.json();
     displayNewsDetails(data.data[0]);
 }
-
-// const displayNewsDetails = (data) =>{
-//   console.log(data);
-//   const newsDetailsContainer = document.getElementById('modal-pop');
-//   data.forEach(news =>{
-//     const detailedNews = document.createElement('div');
-//     detailedNews.innerHTML = `
-//     <div class="modal-content text-center">
-//     <div class="modal-header">
-//       <h5 class="modal-title text-danger" id="exampleModalLabel">Title</h5>
-//       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-//     </div>
-//     <div class="modal-body">
-//     <h6>--- Instructions ---</h6>
-//         <p>Details</p>
-//     </div>
-//     <div class="modal-footer">
-//       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-//     </div>
-//   </div>
-//     `;
-//     newsDetailsContainer.appendChild(detailedNews);
-//   })
-// }
 
 const displayNewsDetails = newsdetails =>{
   console.log(newsdetails);
