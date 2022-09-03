@@ -19,7 +19,7 @@ const displayCategories = (data) =>{
     })
 }
 
-const loadNews = async category_id =>{
+const loadNews = async (category_id, category_name) =>{
   // console.log(category_id);
     const url = `https://openapi.programming-hero.com/api/news/category/0${category_id}`;
     const res = await fetch(url);
@@ -36,9 +36,11 @@ const loadNews = async category_id =>{
 //   .then(data => displayNews(data.data))
 // }
 
-const displayNews = (data) =>{
-    // console.log(data);
+const displayNews = (data, category_name) =>{
+    console.log(data);
     const newsContainer = document.getElementById('news-container');
+    const foundCount = document.getElementById('found-news');
+    foundCount.innerText = data.length;
     newsContainer.textContent = '';
     data.forEach(news =>{
       // console.log(news);
@@ -46,7 +48,7 @@ const displayNews = (data) =>{
         // console.log(_id);
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
-        <div class="card mb-3 p-3" style="max-width: 75rem;">
+        <div class="card mb-3 p-3 shadow p-3 mb-5 bg-body rounded" style="max-width: 75rem;">
                     <div class="row g-0">
                       <div class="col-md-4">
                         <img src="${thumbnail_url}" class=""...">
@@ -76,8 +78,7 @@ const displayNews = (data) =>{
                           <i class="fa-solid fa-star"></i>
                         </div>
                         <div>
-                         <button onclick="loadNewsDetails('${_id}')"><i class="fa-solid fa-arrow-right fs-4 my-2"></i> </button>
-                         <button onclick="loadNewsDetails('${_id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Modal</button>
+                         <button onclick="loadNewsDetails('${_id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-arrow-right fs-4 my-2"></i></button>
                         </div>
                       </div>
                       </div>
@@ -120,15 +121,17 @@ const loadNewsDetails = async news_id =>{
 //   })
 // }
 
-const displayNewsDetails = details =>{
-  console.log(details);
-  const {title} = details;
+const displayNewsDetails = newsdetails =>{
+  console.log(newsdetails);
+  const {title, thumbnail_url, image_url, details} = newsdetails;
   console.log(title);
   const detailsContainer = document.getElementById('modal-pop');
-  detailsContainer.innerHTML = '';
+  detailsContainer.innerHTML = `
+  <img class="img-fluid" src="${image_url}">
+  <p>${details}</p>
+  `;
   const newsLabel = document.getElementById('newsDetailsLabel');
   newsLabel.innerText = title;
-
 }
 
 loadCategories();
