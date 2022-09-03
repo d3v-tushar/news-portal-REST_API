@@ -105,13 +105,16 @@ const loadNewsDetails = async news_id =>{
 
 const displayNewsDetails = newsdetails =>{
   console.log(newsdetails);
-  const {title, thumbnail_url, image_url, details} = newsdetails;
-  console.log(title);
+  const {title, thumbnail_url, image_url, details, author, total_view} = newsdetails;
   const detailsContainer = document.getElementById('modal-pop');
   detailsContainer.innerHTML = `
   <img class="img-fluid" src="${image_url}">
   <p>${details}</p>
   `;
+  const modalAuthor = document.getElementById('modal-author');
+  modalAuthor.innerText = `${author.name}`;
+  const modalViews = document.getElementById('modal-views');
+  modalViews.innerText = `${total_view}`
   const newsLabel = document.getElementById('newsDetailsLabel');
   newsLabel.innerText = title;
 }
