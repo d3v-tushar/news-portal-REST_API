@@ -53,7 +53,8 @@ const displayNews = (data) =>{
     newsContainer.textContent = '';
     data.sort((x, y) => y.total_view - x.total_view);
     data.forEach(news =>{
-        const {title, thumbnail_url, details, total_view, author, _id} = news;
+        console.log(news)
+        const {title, thumbnail_url, details, total_view, author, _id, rating} = news;
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
         <div class="card mb-3 p-3 shadow p-3 mb-5 bg-body rounded" style="max-width: 75rem;">
@@ -64,11 +65,11 @@ const displayNews = (data) =>{
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title">${title}</h5>
-                          <p class="card-text">${details.slice(0,400)}</p>
+                          <p class="card-text">${details.slice(0,300)}...</p>
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
                         <div>
-                          <div><img class="rounded-circle sticky-bottom" style="width: 6rem;" src="${author.img}" alt="">
+                          <div><img class="rounded-circle sticky-bottom" style="width: 5rem;" src="${author.img}" alt="">
                             <div>
                               <h6>${author.name ? author.name : 'No Author'}</h6>
                               <p>${author.published_date}</p>
@@ -79,11 +80,7 @@ const displayNews = (data) =>{
                           <p><i class="fa-regular fa-eye"></i> <strong>${total_view ? total_view : 0}</strong></p>
                         </div>
                         <div>
-                          <i class="fa-solid fa-star"></i>
-                          <i class="fa-solid fa-star"></i>
-                          <i class="fa-solid fa-star"></i>
-                          <i class="fa-solid fa-star"></i>
-                          <i class="fa-solid fa-star"></i>
+                          <p><span class="text-warning"><i class="fa-solid fa-star"></i></span><strong> ${rating.number}</strong></p>
                         </div>
                         <div>
                          <button onclick="loadNewsDetails('${_id}')" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-arrow-right fs-4 my-2"></i></button>

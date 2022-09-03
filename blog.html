@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>News Blog</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- FontAwesome CDN -->
+    <script src="https://kit.fontawesome.com/85754d5be1.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header>
+        <section class="container">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid d-flex justify-content-between">
+                    <div>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+                    <div>
+                      <a href="index.html" type="button" class="btn btn-secondary px-3 me-2 fs-5">
+                        News
+                      </a>
+                    <a type="button" class="btn btn-lg btn-link me-3 fs-5">
+                       <strong> Portal</strong>
+                    </a>
+                    </div>
+                    <div>
+                        <a href="index.html" type="button" class="btn btn-link px-3 me-2 fs-5">
+                            <strong>News</strong>
+                        </a>
+                        <a href="blog.html" type="button" class="btn btn-secondary btn-lg me-3 fs-5">
+                            Blog
+                        </a>
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/5.webp" class="rounded-circle"
+                            height="50rem" alt="Black and White Portrait of a Man" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+              </nav>
+              <hr style="height: 2px ;">
+    <!-- Categories Container -->
+              <div id="categories-container" class="d-flex justify-content-between mx-3 nav nav-pills nav-justified">
+              </div>
+          </section>
+    </header>
+    <main>
+        <div class="container mx-auto align-items-center justify-content-center">
+            <div class="card bg-light mb-3">
+                <div class="card-header">Question 1</div>
+                <div class="card-body">
+                    <h5 class="card-title text-danger">Var vs Let vs Const</h5>
+                    <p class="card-text">
+                        const is preferred to let, which is preferred to var. Avoid using var.
+                        let is preferred to const when it's known that the value it points to will change over time.
+                        const is great for global, constant values.
+                        Libraries are typically imported as const.
+                    </p>
+                </div>
+            </div>
+            <div class="card bg-light mb-3">
+                <div class="card-header">Question 2</div>
+                <div class="card-body">
+                    <h5 class="card-title text-danger">Arrow function vs Regular function</h5>
+                    <p class="card-text">
+                        Function expressions are best for object methods. Arrow functions are best for callbacks or methods
+                        like map , reduce , or forEach . Use function declarations for functions you'd call by name (because
+                        they're hoisted). Use arrow functions for callbacks (because they tend to be terser).
+                    </p>
+                </div>
+            </div>
+            <div class="card bg-light mb-3">
+                <div class="card-header">Question 3</div>
+                <div class="card-body">
+                    <h5 class="card-title text-danger">Difference between map/forEach/filter/find ?</h5>
+                    <p class="card-text">
+                        .map() when you want to transform elements in an array.<br>
+                        .forEach() is great you need to execute a function for each individual element in an array.<br>
+                        .filter() when you want to select a subset of multiple elements from an array.<br>
+                        .find() When you want to select a single element from an array.<br>
+                        <hr>
+                        One of the biggest criticisms of .forEach() is the speed of the operation.
+        
+                        In reality, you shouldn’t be using .forEach() unless other methods such as .map() can’t do the
+                        trick. .map() is actually slightly faster than .forEach().
+        
+                        Admittedly, .forEach() and .map() are still slower than a vanilla for loop. But judging a method
+                        solely based on execution speed is tunnel-visioned. This argument completely ignores readability and
+                        scope.
+        
+                    </p>
+                </div>
+            </div>
+            <div class="card bg-light mb-3">
+                <div class="card-header">Question 4</div>
+                <div class="card-body">
+                    <h5 class="card-title text-danger">Why should we use Template string?</h5>
+                    <p class="card-text">
+                        Template strings are a powerful feature of modern JavaScript released in ES6. It lets us
+                        insert/interpolate variables and expressions into strings without needing to concatenate like in
+                        older versions of JavaScript. It allows us to create strings that are complex and contain dynamic
+                        elements.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <footer class="bg-light text-center text-white shadow p-3">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0">
+                <!-- Section: Social media -->
+                <section class="mb-3">
+                    <!-- Facebook -->
+                    <a class="btn text-white btn-floating m-1 rounded-circle" style="background-color: #3b5998;"
+                        href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+          
+                    <!-- Twitter -->
+                    <a class="btn text-white btn-floating m-1 rounded-circle" style="background-color: #55acee;"
+                        href="#!" role="button"><i class="fab fa-twitter"></i></a>
+          
+                    <!-- Google -->
+                    <a class="btn text-white btn-floating m-1 rounded-circle" style="background-color: #dd4b39;"
+                        href="#!" role="button"><i class="fab fa-google"></i></a>
+          
+                    <!-- Instagram -->
+                    <a class="btn text-white btn-floating m-1 rounded-circle" style="background-color: #ac2bac;"
+                        href="#!" role="button"><i class="fab fa-instagram"></i></a>
+          
+                    <!-- Linkedin -->
+                    <a class="btn text-white btn-floating m-1 rounded-circle" style="background-color: #0082ca;"
+                        href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+                    <!-- Github -->
+                    <a class="btn text-white btn-floating m-1 rounded-circle" style="background-color: #333333;"
+                        href="#!" role="button"><i class="fab fa-github"></i></a>
+                </section>
+                <!-- Section: Social media -->
+            </div>
+            <!-- Grid container -->
+          
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 3025 Copyright:
+                <a class="text-white" href="">d3v-Tushar</a>
+            </div>
+            <!-- Copyright -->
+          </footer>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>
