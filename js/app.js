@@ -14,8 +14,10 @@ const displayCategories = (data) =>{
     data.forEach(categorie =>{
       const {category_id, category_name} = categorie;
        const categorieDiv = document.createElement('div');
+      //  categorieDiv.classList.add('col-md-1');
+      //  categorieDiv.classList.add('d-md-flex');
        categorieDiv.innerHTML = `
-       <div onclick="foundCate('${category_name}')"><a class="btn" onclick="loadNews(${category_id})"><h5>${category_name}</h5></a</div>
+       <div class="col" onclick="foundCate('${category_name}')"><a class="btn" onclick="loadNews(${category_id})"><h5>${category_name}</h5></a</div>
        `;
        categoriesContainer.appendChild(categorieDiv);
     })
@@ -39,8 +41,14 @@ const displayNews = (data) =>{
     const newsContainer = document.getElementById('news-container');
     const foundCount = document.getElementById('found-news');
     foundCount.innerText = data.length;
-    if(data.length == 0){
-      noNewsFound()
+    console.log(data.length)
+    if(data.length !== 0){
+      const noNews = document.getElementById('no-news-found');
+      noNews.classList.add('d-none');
+    }
+    else{
+      const noNews = document.getElementById('no-news-found');
+      noNews.classList.remove('d-none');
     }
     newsContainer.textContent = '';
     data.sort((x, y) => y.total_view - x.total_view);
@@ -87,13 +95,6 @@ const displayNews = (data) =>{
         `;
         newsContainer.appendChild(newsDiv);
     })
-}
-
-const noNewsFound = () =>{
-  const noNews = document.getElementById('no-news-found');
-  noNews.innerHTML =`
-  <h2>No News Found For This Category</h2>
-  `
 }
 
 const loadNewsDetails = async news_id =>{

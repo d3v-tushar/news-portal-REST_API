@@ -15,37 +15,42 @@
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid d-flex justify-content-between">
                 <div>
-                    <a class="navbar-brand" href="#">News Portal</a>
+                    <!-- <a class="navbar-brand" href="#">News Portal</a> -->
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                  </li>
-                </ul>
+              <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+                <div>
+                  <button type="button" class="btn btn-secondary px-3 me-2 fs-5">
+                    News
+                </button>
+                <button type="button" class="btn btn-lg btn-link me-3 fs-5">
+                   <strong> Portal</strong>
+                </button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-link px-3 me-2 fs-5">
+                        <strong>News</strong>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-lg me-3 fs-5">
+                        Blog
+                    </button>
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/5.webp" class="rounded-circle"
+                        height="50rem" alt="Black and White Portrait of a Man" loading="lazy" />
+                </div>
               </div>
             </div>
           </nav>
-          <hr style="height: 4px ;">
-          <div id="categories-container" class="d-flex justify-content-between mx-3">
+          <hr style="height: 2px ;">
+<!-- Categories Container -->
+          <div id="categories-container" class="d-flex justify-content-between mx-3 nav nav-pills nav-justified">
           </div>
       </section>
     </header>
     <main class="container">
       <section>
-<!-- Modal -->
+<!------- Modal ------->
           <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -57,7 +62,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-between bg-light">
                   <h6 class="ms-4">Author Name: <span id="modal-author" class="text-danger"></span></h6>
-                  <p class="fw-semibold"><i class="fa-solid fa-eye"></i> <span id="modal-views"></span></p>
+                  <p class="fw-semibold"><i class="fa-solid fa-eye"></i> <span id="modal-views" class="text-secondary"></span></p>
                   <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
                 </div>
               </div>
@@ -85,7 +90,7 @@
         </section>
 <!-- No News Found -->
 <section>
-  <div id="no-news-found" class="text-center text-danger"></div>
+  <div id="no-news-found" class="text-center text-danger d-none"><h2>No News Found For This Category</h2></div>
 </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
