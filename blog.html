@@ -44,14 +44,15 @@
               </div>
           </section>
     </header>
-    <main>
-        <div class="container mx-auto align-items-center justify-content-center">
+    <main class="container my-2">
+        <h2 class="text-center">FAQ</h2>
+        <div class="container mx-auto my-2 align-items-center justify-content-center">
             <div class="card bg-light mb-3">
                 <div class="card-header">Question 1</div>
                 <div class="card-body">
                     <h5 class="card-title text-danger">Var vs Let vs Const</h5>
                     <p class="card-text">
-                        const is preferred to let, which is preferred to var. Avoid using var.
+                        const is preferred to let, which is preferred to var. Avoid using <strong>var</strong>.
                         let is preferred to const when it's known that the value it points to will change over time.
                         const is great for global, constant values.
                         Libraries are typically imported as const.
@@ -67,6 +68,16 @@
                         like map , reduce , or forEach . Use function declarations for functions you'd call by name (because
                         they're hoisted). Use arrow functions for callbacks (because they tend to be terser).
                     </p>
+                    <p>JavaScript's arrow functions might seem the same as regular functions on the surface, but they have some very important differences:
+
+                        <ul>
+                            <li>Syntactical differences</li>
+                            <li>this value (execution context)</li>
+                            <li> Usage as methods</li>
+                            <li>Usage as constructors</li>
+                            <li> arguments binding</li>
+                        </ul>
+                    </p>
                 </div>
             </div>
             <div class="card bg-light mb-3">
@@ -74,17 +85,17 @@
                 <div class="card-body">
                     <h5 class="card-title text-danger">Difference between map/forEach/filter/find ?</h5>
                     <p class="card-text">
-                        .map() when you want to transform elements in an array.<br>
-                        .forEach() is great you need to execute a function for each individual element in an array.<br>
-                        .filter() when you want to select a subset of multiple elements from an array.<br>
-                        .find() When you want to select a single element from an array.<br>
+                        <strong>.map()</strong> when you want to transform elements in an array.<br>
+                        <strong>.forEach()</strong> is great you need to execute a function for each individual element in an array.<br>
+                        <strong>.filter()</strong> when you want to select a subset of multiple elements from an array.<br>
+                        <strong>.find()</strong> When you want to select a single element from an array.<br>
                         <hr>
-                        One of the biggest criticisms of .forEach() is the speed of the operation.
+                        One of the biggest criticisms of <strong>.forEach()</strong> is the speed of the operation.
         
-                        In reality, you shouldn’t be using .forEach() unless other methods such as .map() can’t do the
-                        trick. .map() is actually slightly faster than .forEach().
+                        In reality, you shouldn’t be using <strong>.forEach()</strong> unless other methods such as <strong>.map()</strong> can’t do the
+                        trick. <strong>.map()</strong> is actually slightly faster than <strong>.forEach()</strong>.
         
-                        Admittedly, .forEach() and .map() are still slower than a vanilla for loop. But judging a method
+                        Admittedly, <strong>.forEach()</strong> and <strong>.map()</strong> are still slower than a vanilla for loop. But judging a method
                         solely based on execution speed is tunnel-visioned. This argument completely ignores readability and
                         scope.
         
@@ -137,7 +148,7 @@
             <!-- Grid container -->
           
             <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                 © 2030 Copyright:
                 <a class="text-dark" href="">d3v-Tushar</a>
             </div>

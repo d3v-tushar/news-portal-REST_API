@@ -1,28 +1,40 @@
 const loadCategories = async() =>{
+  try{
     const url = `https://openapi.programming-hero.com/api/news/categories`;
     const res = await fetch(url);
     const data = await res.json();
     displayCategories(data.data.news_category);
-    loadingSpinner(true);
+  }
+  catch(error){
+    console.log(error);
+  }
+  loadingSpinner(true);
 }
 
 const displayCategories = (data) =>{
+    toggleSpinner(false);
     const categoriesContainer = document.getElementById('categories-container');
     data.forEach(categorie =>{
-      const {category_id, category_name} = categorie;
-       const categorieDiv = document.createElement('div');
-       categorieDiv.innerHTML = `
-       <div class="col" onclick="foundCate('${category_name}')"><a class="btn" onclick="loadNews(${category_id})"><h5>${category_name}</h5></a</div>
-       `;
-       categoriesContainer.appendChild(categorieDiv);
-    })
+    const {category_id, category_name} = categorie;
+    const categorieDiv = document.createElement('div');
+    categorieDiv.innerHTML = `
+    <div onclick="foundCate('${category_name}')"><a class="btn" onclick="loadNews(${category_id})"><h5>${category_name}</h5></a</div>
+    `;
+    categoriesContainer.appendChild(categorieDiv);
+      })
 }
 
 const loadNews = async (category_id) =>{
+    try{
     const url = `https://openapi.programming-hero.com/api/news/category/0${category_id}`;
     const res = await fetch(url);
     const data = await res.json();
     displayNews(data.data);
+    }
+    catch(error){
+      console.log(error);
+    }
+    toggleSpinner(true);
 }
 
 const foundCate = (category_name) =>{
@@ -78,22 +90,29 @@ const displayNews = (data) =>{
           <p><span class="text-warning"><i class="fa-solid fa-star"></i></span><strong> ${rating.number}</strong></p>
         </div>
         <div>
-         <button onclick="loadNewsDetails('${_id}')" type="button" class="btn text-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-arrow-right fs-4 my-2"></i></button>
+            <button onclick="loadNewsDetails('${_id}')" type="button" class="btn text-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-arrow-right fs-4 my-2"></i></button>
+            </div>
+          </div>
+          </div>
         </div>
       </div>
-      </div>
-    </div>
-  </div>
         `;
         newsContainer.appendChild(newsDiv);
     })
+    toggleSpinner(false);
 }
 
 const loadNewsDetails = async news_id =>{
+  try{
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
     const res = await fetch(url);
     const data = await res.json();
     displayNewsDetails(data.data[0]);
+  }
+   catch(error){
+    console.log(error);
+  }
+  toggleSpinner(true);
 }
 
 const displayNewsDetails = newsdetails =>{
@@ -110,15 +129,16 @@ const displayNewsDetails = newsdetails =>{
   modalViews.innerText = `${total_view}`
   const newsLabel = document.getElementById('newsDetailsLabel');
   newsLabel.innerText = title;
+  toggleSpinner(false)
 }
 
-const loadingSpinner = (status) =>{
+const toggleSpinner = (status) =>{
  const spinner = document.getElementById('spinner-id');
- if(status === true){
-  spinner.classList.add('d-none')
+ if(status){
+  spinner.classList.add('d-none');
  }
  else{
-  spinner.classList.remove('d-none')
+  spinner.classList.remove('d-none');
  }
 }
 

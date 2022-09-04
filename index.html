@@ -21,7 +21,7 @@
                 </div>
               <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
                 <div>
-                  <a href="index.html" type="button" class="btn btn-secondary px-3 me-2 fs-5">
+                  <a href="index.html" type="button" class="btn btn-secondary px-3 me-2 fs-5 shadow-sm">
                     Global News
                   </a>
                 </div>
@@ -29,7 +29,7 @@
                     <a href="index.html" type="button" class="btn btn-link px-3 me-2 fs-5">
                         <strong>News</strong>
                     </a>
-                    <a href="blog.html" type="button" class="btn btn-secondary btn-lg me-3 fs-5">
+                    <a href="blog.html" type="button" class="btn btn-secondary px-3 me-2 fs-5 shadow-sm">
                         Blog
                     </a>
                     <img src="https://mdbcdn.b-cdn.net/img/new/avatars/5.webp" class="rounded-circle"
@@ -69,9 +69,11 @@
 <!-- News Results -->
         <h3 class="my-4 mx-2 bg-white p-3 rounded-3 shadow-sm p-3 mb-5 bg-body rounded"> <span id="found-news"></span> items found for category <span id="category-result">All News</span></h3>
 <!-- Loading Spinner -->
-<div class="text-center">
-  <div id="spinner-id" class="spinner-border d-none" role="status">
-    <span class="visually-hidden">Loading...</span>
+<div id="spinner-id" class="d-none">
+  <div style="height: 5rem ;" class="text-center d-flex justify-content-center align-items-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
 </div>
 <!-- News Section -->
@@ -80,7 +82,7 @@
             </div>
         </section>
 <!-- No News Found -->
-<section>
+<section style="height: 15rem;" class="d-flex align-items-center justify-content-center">
   <div id="no-news-found" class="text-center text-danger d-none"><h2>No News Found For This Category</h2></div>
 </section>
 
