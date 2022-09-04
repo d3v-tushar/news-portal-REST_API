@@ -70,10 +70,10 @@ const displayNews = (data) =>{
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">${title}</h5>
+          <h5 class="card-title mb-3">${title}</h5>
           <p class="card-text">${details.slice(0,400)}...</p>
         </div>
-        <div class="card-footer d-flex justify-content-between align-items-center">
+        <div class="my-auto card-footer d-flex justify-content-between align-items-center">
         <div class="d-flex">
             <div>
                  <img class="rounded-circle sticky-bottom me-2" style="width: 4rem;" src="${author.img}" alt="">
@@ -120,7 +120,7 @@ const displayNewsDetails = newsdetails =>{
   const {title, thumbnail_url, image_url, details, author, total_view} = newsdetails;
   const detailsContainer = document.getElementById('modal-pop');
   detailsContainer.innerHTML = `
-  <img class="img-fluid" src="${image_url}">
+  <img class="img-fluid mb-3" src="${image_url}">
   <p>${details}</p>
   `;
   const modalAuthor = document.getElementById('modal-author');
